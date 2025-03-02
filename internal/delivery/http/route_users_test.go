@@ -56,7 +56,7 @@ func TestGetUserInformation(t *testing.T) {
 	responsedMap := map[string]interface{}{}
 	err = json.Unmarshal(rr.Body.Bytes(), &responsedMap)
 	if err != nil {
-		t.Errorf("get unexpect json: %w", err)
+		t.Errorf("get unexpect json: %v", err)
 	}
 
 	t.Logf("got response %v", rr.Body.String())
@@ -155,7 +155,7 @@ func TestGetUserFavorite(t *testing.T) {
 	responsedMap := map[string]interface{}{}
 	err = json.Unmarshal(rr.Body.Bytes(), &responsedMap)
 	if err != nil {
-		t.Errorf("get unexpect json: %w", err)
+		t.Errorf("get unexpect json: %v", err)
 	}
 
 	t.Logf("got response %v", rr.Body.String())
@@ -196,7 +196,7 @@ func TestGetUserPreference(t *testing.T) {
 	responsedMap := map[string]interface{}{}
 	err = json.Unmarshal(rr.Body.Bytes(), &responsedMap)
 	if err != nil {
-		t.Errorf("get unexpected json: %w", err)
+		t.Errorf("get unexpected json: %v", err)
 	}
 
 	t.Logf("got response %v", rr.Body.String())
@@ -238,7 +238,7 @@ func TestGetUserArticles(t *testing.T) {
 	responsedMap := map[string]interface{}{}
 	err = json.Unmarshal(rr.Body.Bytes(), &responsedMap)
 	if err != nil {
-		t.Errorf("get unexpect json: %w", err)
+		t.Errorf("get unexpect json: %v", err)
 	}
 	t.Logf("got response %v", rr.Body.String())
 	if responsedMap["data"] == nil {
@@ -275,7 +275,7 @@ func TestGetUserComments(t *testing.T) {
 	responsedMap := map[string]interface{}{}
 	err = json.Unmarshal(rr.Body.Bytes(), &responsedMap)
 	if err != nil {
-		t.Errorf("get unexpect json: %w", err)
+		t.Errorf("get unexpect json: %v", err)
 	}
 }
 
@@ -307,7 +307,7 @@ func TestGetUserDrafts(t *testing.T) {
 	responsedMap := map[string]interface{}{}
 	err = json.Unmarshal(rr.Body.Bytes(), &responsedMap)
 	if err != nil {
-		t.Errorf("get unexpect json: %w", err)
+		t.Errorf("get unexpect json: %v", err)
 	}
 
 	t.Logf("got response %v", rr.Body.String())
@@ -354,7 +354,7 @@ func TestUpdateUserDraft(t *testing.T) {
 	responsedMap := map[string]interface{}{}
 	err = json.Unmarshal(rr.Body.Bytes(), &responsedMap)
 	if err != nil {
-		t.Errorf("get unexpect json: %w", err)
+		t.Errorf("get unexpect json: %v", err)
 	}
 
 	t.Logf("got response %v", rr.Body.String())

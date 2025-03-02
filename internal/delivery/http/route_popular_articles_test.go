@@ -28,7 +28,7 @@ func TestGetPopularArticles(t *testing.T) {
 	responseMap := map[string]interface{}{}
 	err = json.Unmarshal(rr.Body.Bytes(), &responseMap)
 	if err != nil {
-		t.Errorf("get unexpect json: %w", err)
+		t.Errorf("get unexpect json: %v", err)
 	}
 	t.Logf("got response %v", rr.Body.String())
 }
