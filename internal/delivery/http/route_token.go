@@ -15,8 +15,8 @@ import (
 // API Doc: https://pttapp.cc/swagger/#/%E4%BD%BF%E7%94%A8%E8%80%85%E9%83%A8%E5%88%86/post_v1_token
 func (delivery *Delivery) postToken(w http.ResponseWriter, r *http.Request) {
 	err := r.ParseForm()
-	if err == nil {
-		delivery.logger.Errorf("postToken parse form err: %w", err)
+	if err != nil {
+		delivery.logger.Warningf("postToken parse form err: %w", err)
 	}
 
 	username := r.FormValue("username")
