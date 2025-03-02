@@ -55,7 +55,7 @@ func testLoggerLevel(t *testing.T, targetLevel uint) {
 		log.Fatalf("Get error %s\n", err.Error())
 	}
 	reader := bufio.NewReader(tempFile)
-	idx := 0
+	idx := uint(0)
 	for line, _, err := reader.ReadLine(); ; line, _, err = reader.ReadLine() {
 		if err == io.EOF {
 			break
@@ -66,7 +66,7 @@ func testLoggerLevel(t *testing.T, targetLevel uint) {
 		result := strings.Split(string(line), " ")
 		// result[0]: 2006-01-02
 		// result[1]: 15:04:05
-		if idx > int(targetLevel) {
+		if idx > targetLevel {
 			t.Fatalf("Unexpect LogLevel %s", result[2])
 		}
 		if result[2] != settingList[idx].Name {
@@ -75,7 +75,7 @@ func testLoggerLevel(t *testing.T, targetLevel uint) {
 		idx++
 	}
 
-	if idx-1 != int(targetLevel) {
+	if idx-1 != targetLevel {
 		t.Fatalf("Missing Log Level %d: \"%s\"", idx, settingList[idx].Name)
 	}
 }
