@@ -216,7 +216,19 @@ $ .\Ptt-backend.exe
 
 #### Troubleshoot
 
-// TODO
+1. 如果遇到 `get user rec error: open ./home/bbs/.PASSWDS: no such file or directory` 的錯誤
+
+方法一：
+
+您有可能沒有將原有 bbs 的 `home` 資料夾複製到專案目錄下，請將原有 bbs 的 `home` 資料夾複製到專案目錄下。
+
+方法二：
+
+```bash
+mkdir -p ./home/bbs
+touch ./home/bbs/.PASSWDS
+touch ./home/bbs/.BRD
+```
 
 ### 狀況 2: 使用 Gitpod 開發
 
