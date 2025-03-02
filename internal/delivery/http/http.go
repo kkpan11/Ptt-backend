@@ -3,6 +3,7 @@ package http
 import (
 	"fmt"
 	"net/http"
+	"time"
 
 	"github.com/Ptt-official-app/Ptt-backend/internal/logging"
 	"github.com/Ptt-official-app/Ptt-backend/internal/usecase"
@@ -24,10 +25,15 @@ func NewHTTPDelivery(usecase usecase.Usecase) *Delivery {
 }
 
 // TODO: explain what this method to
-func (delivery *Delivery) Run(port int16) error {
+func (delivery *Delivery) Run(port uint16) error {
 	mux := http.NewServeMux()
 	delivery.buildRoute(mux)
 
 	delivery.logger.Informationalf("listen port on %v", port)
-	return http.ListenAndServe(fmt.Sprintf(":%v", port), mux)
+	srv := http.Server{
+		Addr:              fmt.Sprintf(":%v", port),
+		ReadHeaderTimeout: 3 * time.Second,
+		Handler:           mux,
+	}
+	return srv.ListenAndServe()
 }

@@ -11,7 +11,7 @@ import (
 
 type Config struct {
 	BBSHome               string
-	ListenPort            int16
+	ListenPort            uint16
 	AccessTokenPrivateKey string
 	AccessTokenPublicKey  string
 	AccessTokenExpiresAt  time.Duration
@@ -63,7 +63,11 @@ func applyConfig(config *Config, rawConfig *toml.Tree) {
 	i, ok = rawConfig.Get("networking.listen_port").(int64)
 	if ok {
 		logger.Debugf("read rawConfig networking.listen_port: %v", i)
-		config.ListenPort = int16(i)
+		if i < 0 || i > 65535 {
+			logger.Warningf("invalid port number: %v", i)
+		} else {
+			config.ListenPort = uint16(i)
+		}
 	}
 	s, ok = rawConfig.Get("security.access_token_private_key").(string)
 	if ok {
