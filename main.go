@@ -25,6 +25,9 @@ func main() {
 	flag.Parse()
 
 	if _, ok := os.LookupEnv("LOG_LEVEL"); !ok {
+		if *logLevel > 7 {
+			*logLevel = 7
+		}
 		os.Setenv("LOG_LEVEL", strconv.Itoa(int(*logLevel)))
 	}
 

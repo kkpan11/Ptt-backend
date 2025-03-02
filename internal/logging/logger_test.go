@@ -2,11 +2,11 @@ package logging
 
 import (
 	"bufio"
+	"fmt"
 	"io"
 	"io/ioutil"
 	"log"
 	"os"
-	"strconv"
 	"strings"
 	"testing"
 )
@@ -32,7 +32,8 @@ var settingList []LogSetting = []LogSetting{
 }
 
 func testLoggerLevel(t *testing.T, targetLevel uint) {
-	tempFile := newFile("testing level "+strconv.Itoa(int(targetLevel)), t)
+	testName := fmt.Sprintf("testing level %v", targetLevel)
+	tempFile := newFile(testName, t)
 	testLogger := &logger{
 		output: tempFile,
 		level:  targetLevel,

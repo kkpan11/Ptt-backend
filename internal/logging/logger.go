@@ -92,9 +92,15 @@ func NewLogger() Logger {
 		fmt.Println(err)
 		level = 7
 	}
+	if level > 7 {
+		level = 7
+	}
+	if level < 0 {
+		level = 0
+	}
 	return &logger{
 		output: os.Stderr,
-		level:  uint(level),
+		level:  uint(level), // #nosec G115 - level is constrained to 0-7
 	}
 }
 
